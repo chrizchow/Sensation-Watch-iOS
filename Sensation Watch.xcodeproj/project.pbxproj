@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB01E6192A300A683AF /* AppDelegate.swift */; };
-		9069CFB31E6192A300A683AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB21E6192A300A683AF /* ViewController.swift */; };
 		9069CFB61E6192A300A683AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9069CFB41E6192A300A683AF /* Main.storyboard */; };
 		9069CFB81E6192A300A683AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9069CFB71E6192A300A683AF /* Assets.xcassets */; };
 		9069CFBB1E6192A300A683AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9069CFB91E6192A300A683AF /* LaunchScreen.storyboard */; };
 		9069CFC61E6192A300A683AF /* Sensation_WatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFC51E6192A300A683AF /* Sensation_WatchTests.swift */; };
+		9069CFD61E61B85A00A683AF /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFD51E61B85A00A683AF /* ScanViewController.swift */; };
+		9069CFD81E61B95300A683AF /* bleScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFD71E61B95300A683AF /* bleScanner.swift */; };
+		9069CFDA1E61CDA800A683AF /* BleDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */; };
+		9069CFDC1E61DD2600A683AF /* bleDeviceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +31,6 @@
 /* Begin PBXFileReference section */
 		9069CFAD1E6192A300A683AF /* Sensation Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensation Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9069CFB01E6192A300A683AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9069CFB21E6192A300A683AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9069CFB51E6192A300A683AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9069CFB71E6192A300A683AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9069CFBA1E6192A300A683AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +38,10 @@
 		9069CFC11E6192A300A683AF /* Sensation WatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensation WatchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9069CFC51E6192A300A683AF /* Sensation_WatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensation_WatchTests.swift; sourceTree = "<group>"; };
 		9069CFC71E6192A300A683AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9069CFD51E61B85A00A683AF /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		9069CFD71E61B95300A683AF /* bleScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleScanner.swift; sourceTree = "<group>"; };
+		9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleDeviceControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +83,10 @@
 		9069CFAF1E6192A300A683AF /* Sensation Watch */ = {
 			isa = PBXGroup;
 			children = (
+				9069CFD01E61B7C700A683AF /* ViewController */,
 				9069CFB01E6192A300A683AF /* AppDelegate.swift */,
-				9069CFB21E6192A300A683AF /* ViewController.swift */,
+				9069CFD71E61B95300A683AF /* bleScanner.swift */,
+				9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */,
 				9069CFB41E6192A300A683AF /* Main.storyboard */,
 				9069CFB71E6192A300A683AF /* Assets.xcassets */,
 				9069CFB91E6192A300A683AF /* LaunchScreen.storyboard */,
@@ -94,6 +102,15 @@
 				9069CFC71E6192A300A683AF /* Info.plist */,
 			);
 			path = "Sensation WatchTests";
+			sourceTree = "<group>";
+		};
+		9069CFD01E61B7C700A683AF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9069CFD51E61B85A00A683AF /* ScanViewController.swift */,
+				9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +218,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9069CFB31E6192A300A683AF /* ViewController.swift in Sources */,
 				9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */,
+				9069CFDC1E61DD2600A683AF /* bleDeviceControl.swift in Sources */,
+				9069CFDA1E61CDA800A683AF /* BleDeviceTableViewCell.swift in Sources */,
+				9069CFD61E61B85A00A683AF /* ScanViewController.swift in Sources */,
+				9069CFD81E61B95300A683AF /* bleScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
