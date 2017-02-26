@@ -10,13 +10,15 @@ import Foundation
 import CoreLocation
 import CoreBluetooth
 
+// MARK: Protocol for other VC to implement
 protocol bleDeviceControlDelegate{
     mutating func updateState(state: bleStatus)
     mutating func deviceConnectionUpdate(state: connectionStatus)
     mutating func foundService(success: Bool)
     mutating func foundCharacteristics(success: Bool)
     mutating func registeredCharacteristics()
-    
+    mutating func characteristicUpdated_HeartRate(beatcount: Int)
+    mutating func characteristicUpdated_FootStep(stepcount: Int)
 }
 
 
@@ -32,6 +34,20 @@ class bleDeviceControl: NSObject, CLLocationManagerDelegate {
     //other local variables:
     var status = bleStatus.Bluetooth_STRANGE
     var delegate: bleDeviceControlDelegate?
+    var epochTimeChar :CBCharacteristic?        //for sync time
+    
+    // MARK: - Initialization
+    func transferManagerPeripheral(manger: CBCentralManager, peripheral: CBPeripheral){
+        self.manager = manger
+        self.peripheral = peripheral
+        
+    }
+    
+    // MARK: - Connect the peripheral
+    func connectDevice(){
+        manager!.delegate = self
+        manager!.connect(peripheral!, options: nil)
+    }
     
     // MARK: - Scanning of services and characteristics
     
@@ -86,16 +102,61 @@ class bleDeviceControl: NSObject, CLLocationManagerDelegate {
                 
             }else if(characteristic.uuid == CBUUID.init(string: "FFF7")){
                 //Remeber the characteristic and enable timesync buttion:
-                //epochTimeChar = characteristic
+                epochTimeChar = characteristic
                 //synchronizeButton.isEnabled = true
                 
             }else{
                 print("Not Registered: \(characteristic)")
             }
         }
+        
+        //notify delegate that this function has run successfully
+        delegate?.registeredCharacteristics()
+        
+    }
+    
+    // MARK: - Epoch Time and Time Synchronization for Texas Instruments
+    //Get epoch time and convert to 2000 (TI Version)
+    func getTiEpochTime() -> UInt32{
+        let systemTime = Int(Date().timeIntervalSince1970)
+        let secondsDiffFromUTC = TimeZone.current.secondsFromGMT() //get device timezone
+        return UInt32(systemTime - 946684800 + secondsDiffFromUTC)
+    }
+    
+    //synchronize device time with device by writing a characteristic
+    func syncTime(){
+        if(epochTimeChar != nil){
+            //convert the UTC time to NSData:
+            let epochTimeData :Data = convertInt2NSData(value: getTiEpochTime())
+            //write value to BLE device:
+            peripheral!.writeValue(epochTimeData,
+                                   for: epochTimeChar!,
+                                   type: CBCharacteristicWriteType.withResponse)
+        }
     }
     
     
+    // MARK: - Useful Functions for Manipulating NSData
+    //Convert a 32-bit integer to NSData with default endianness in Apple (Little in ARM)
+    func convertInt2NSData(value: UInt32) -> Data{
+        //Convert double to NSData
+        let size = MemoryLayout<UInt32>.size
+        let intArray: [UInt32] = [value]
+        let c = Data(bytes: intArray, count: size)
+        
+        //NSData to UInt8 array
+        /*
+         let returnValue = [UInt8](c)
+         print("\(returnValue)");
+         */
+        
+        return c
+        
+    }
+    
+    func convertNSData2UInt32(data: Data) -> UInt32 {
+        return data.withUnsafeBytes { $0.pointee }
+    }
     
     
 }
@@ -140,7 +201,7 @@ extension bleDeviceControl: CBCentralManagerDelegate{
         self.peripheral = peripheral
         
         //disconver service immediately:
-        //scanRequiredServices() //TODO: this should be put in elsewhere
+        scanRequiredServices()
         
     }
     
@@ -178,8 +239,7 @@ extension bleDeviceControl: CBPeripheralDelegate{
             delegate?.foundService(success: true)
             
             //Try to discover all characteristics in all services
-            //scanRequiredCharacteristicsForGivenServices(services: peripheral.services!)
-            //TODO: This should be put elsewhere
+            scanRequiredCharacteristicsForGivenServices(services: peripheral.services!)
             
             
         }else{
@@ -200,10 +260,50 @@ extension bleDeviceControl: CBPeripheralDelegate{
             //notify delegate:
             delegate?.foundCharacteristics(success: true)
             
-            //register:
+            //register some characteristics for notifcations:
             registerSpecificCharacteristics(characteristics: service.characteristics!)
+
         }
         
     }
+    
+    //When characteristic is updated, this would be triggered:
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("👅Characheristic Update !")
+        if(error == nil){
+            //print debug:
+            print(characteristic)
+            
+            //do different things for different characteristic:
+            switch(characteristic.uuid){
+            case CBUUID.init(string: "2A37"):   //if it is heart rate, update the screen
+                let dataArray = [UInt8](characteristic.value!) //heart rate only got 2 bytes
+                //notify the delegate about new value:
+                delegate?.characteristicUpdated_HeartRate(beatcount: Int(dataArray[0]))
+                break
+                
+            case CBUUID.init(string: "FFF6"):
+                let nsdata = characteristic.value!  //step count is uint32
+                //notify the delegate about new value:
+                delegate?.characteristicUpdated_FootStep(stepcount: Int(convertNSData2UInt32(data: nsdata)))
+                break
+                
+            default: break
+                
+            }
+            
+        }else{
+            print("characteristic update error occured.")
+        }
+    }
+    
+    //When you register notification successfully, this would be triggered:
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        print("😎 NotificationState Update !")
+        if((error) != nil){
+            print("Error Occured: \(error)")
+        }
+    }
+    
 }
 

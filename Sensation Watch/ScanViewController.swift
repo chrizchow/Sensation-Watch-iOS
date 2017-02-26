@@ -16,7 +16,6 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
     @IBOutlet weak var statusLabel: UILabel!
     
     // MARK: - i18n Strings for displaying on UI:
-    let str_OK = NSLocalizedString("OK", comment: "okay")
     let str_BT_ON = NSLocalizedString("Bluetooth Status: On", comment: "bluetooth on")
     let str_BT_OFF = NSLocalizedString("Bluetooth Status: Off", comment: "bluetooth off")
     let str_BT_NS = NSLocalizedString("Bluetooth is NOT supported", comment: "bluetooth unsupport")
