@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5901E62DC0B00CEBB1F /* bleStatus.swift */; };
+		903DF5931E62E1A900CEBB1F /* DeviceControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */; };
 		9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB01E6192A300A683AF /* AppDelegate.swift */; };
 		9069CFB61E6192A300A683AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9069CFB41E6192A300A683AF /* Main.storyboard */; };
 		9069CFB81E6192A300A683AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9069CFB71E6192A300A683AF /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		903DF5901E62DC0B00CEBB1F /* bleStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleStatus.swift; sourceTree = "<group>"; };
+		903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceControlViewController.swift; sourceTree = "<group>"; };
 		9069CFAD1E6192A300A683AF /* Sensation Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensation Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9069CFB01E6192A300A683AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9069CFB51E6192A300A683AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 				9069CFB01E6192A300A683AF /* AppDelegate.swift */,
 				9069CFD71E61B95300A683AF /* bleScanner.swift */,
 				9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */,
+				903DF5901E62DC0B00CEBB1F /* bleStatus.swift */,
 				9069CFB41E6192A300A683AF /* Main.storyboard */,
 				9069CFB71E6192A300A683AF /* Assets.xcassets */,
 				9069CFB91E6192A300A683AF /* LaunchScreen.storyboard */,
@@ -109,6 +114,7 @@
 			children = (
 				9069CFD51E61B85A00A683AF /* ScanViewController.swift */,
 				9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */,
+				903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -221,7 +227,9 @@
 				9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */,
 				9069CFDC1E61DD2600A683AF /* bleDeviceControl.swift in Sources */,
 				9069CFDA1E61CDA800A683AF /* BleDeviceTableViewCell.swift in Sources */,
+				903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */,
 				9069CFD61E61B85A00A683AF /* ScanViewController.swift in Sources */,
+				903DF5931E62E1A900CEBB1F /* DeviceControlViewController.swift in Sources */,
 				9069CFD81E61B95300A683AF /* bleScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +440,7 @@
 				9069CFCC1E6192A300A683AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9069CFCD1E6192A300A683AF /* Build configuration list for PBXNativeTarget "Sensation WatchTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +449,7 @@
 				9069CFCF1E6192A300A683AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

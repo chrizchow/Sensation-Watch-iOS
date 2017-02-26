@@ -11,7 +11,7 @@ import CoreBluetooth
 
 // MARK: Protocol for other VC to implement
 protocol bleScannerDelegate {
-    mutating func updateState(state: bleScanner.ScannerStatus)
+    mutating func updateState(state: bleStatus)
     mutating func updateDeviceTable()
     
 }
@@ -22,7 +22,7 @@ class bleScanner: NSObject, CBCentralManagerDelegate {
     // MARK: Properties Declaration
     var manager: CBCentralManager?
     var devices = [bleDevice]()
-    var status = ScannerStatus.Bluetooth_STRANGE
+    var status = bleStatus.Bluetooth_STRANGE
     var delegate: bleScannerDelegate?
     
     // MARK: Initialization
@@ -43,11 +43,6 @@ class bleScanner: NSObject, CBCentralManagerDelegate {
         }
     }
     
-    // MARK: Types of status
-    enum ScannerStatus {
-        case Bluetooth_ON, Bluetooth_OFF, Bluetooth_UNSUPPORTED, Bluetooth_STRANGE
-    }
-    
     
     // MARK: - Overriding CoreBluetooth Functions
     //When Bluetooth is switched on/off etc, this would be triggered:
@@ -55,19 +50,19 @@ class bleScanner: NSObject, CBCentralManagerDelegate {
         
         switch manager!.state {
         case CBManagerState.poweredOn:
-            status = ScannerStatus.Bluetooth_ON
+            status = bleStatus.Bluetooth_ON
             delegate?.updateState(state: status)
             
         case CBManagerState.poweredOff:
-            status = ScannerStatus.Bluetooth_OFF
+            status = bleStatus.Bluetooth_OFF
             delegate?.updateState(state: status)
             
         case CBManagerState.unsupported:
-            status = ScannerStatus.Bluetooth_UNSUPPORTED
+            status = bleStatus.Bluetooth_UNSUPPORTED
             delegate?.updateState(state: status)
             
         default:
-            status = ScannerStatus.Bluetooth_STRANGE
+            status = bleStatus.Bluetooth_STRANGE
             delegate?.updateState(state: status)
         }
         

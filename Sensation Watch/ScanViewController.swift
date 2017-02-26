@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ScanViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, bleScannerDelegate {
+class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDelegate {
     
     var bScanObj = bleScanner()
     @IBOutlet weak var deviceTable: UITableView!
@@ -29,7 +29,7 @@ class ScanViewController : UIViewController, UITableViewDelegate, UITableViewDat
         bScanObj.delegate = self
         
         //link the devicetable:
-        deviceTable.delegate = self
+        //deviceTable.delegate = self
         deviceTable.dataSource = self
         
         //change color to sky blue:
@@ -39,17 +39,17 @@ class ScanViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Implementing Delegates of BLE Scanner
-    func updateState(state: bleScanner.ScannerStatus){
+    func updateState(state: bleStatus){
         switch(state){
-        case bleScanner.ScannerStatus.Bluetooth_ON:
+        case bleStatus.Bluetooth_ON:
             statusLabel.text = str_BT_ON
             bScanObj.startDeviceScanning()      //we want scanning upon bt on
             
-        case bleScanner.ScannerStatus.Bluetooth_OFF:
+        case bleStatus.Bluetooth_OFF:
             statusLabel.text = str_BT_OFF
             bScanObj.clearDevicesTable()        //avoid unexpected click
             
-        case bleScanner.ScannerStatus.Bluetooth_UNSUPPORTED:
+        case bleStatus.Bluetooth_UNSUPPORTED:
             statusLabel.text = str_BT_NS
             
         default:
@@ -62,7 +62,13 @@ class ScanViewController : UIViewController, UITableViewDelegate, UITableViewDat
         deviceTable.reloadData()
     }
     
-    // MARK: - Implementing Delegates of UITableViewDataSource
+    
+    
+}
+
+// MARK: - Implementing Delegates of UITableViewDataSource
+extension ScanViewController: UITableViewDataSource{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -92,4 +98,6 @@ class ScanViewController : UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+
+    
 }
