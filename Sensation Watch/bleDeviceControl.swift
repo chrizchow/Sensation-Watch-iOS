@@ -12,6 +12,7 @@ import CoreBluetooth
 
 // MARK: Protocol for other VC to implement
 protocol bleDeviceControlDelegate{
+    mutating func warnIncompatibleDevice()
     mutating func updateState(state: bleStatus)
     mutating func deviceConnectionUpdate(state: connectionStatus)
     mutating func foundService(success: Bool)
@@ -20,6 +21,7 @@ protocol bleDeviceControlDelegate{
     mutating func characteristicUpdated_HeartRate(beatcount: Int)
     mutating func characteristicUpdated_FootStep(stepcount: Int)
     mutating func fallDetectionProcessed()
+    mutating func updateCalories(value: Float)
 }
 
 
@@ -34,17 +36,20 @@ class bleDeviceControl: NSObject {
     var peripheral: CBPeripheral?
     var deviceConnectionStatus = connectionStatus.disconnected
     //other local variables:
+    var peripheralName: String?
     var status = bleStatus.Bluetooth_STRANGE
     var delegate: bleDeviceControlDelegate?
     var epochTimeChar :CBCharacteristic?        //for sync time
+    var stepCountChar :CBCharacteristic?        //for step count
     var udobj = UserData();
     var location_lat: String?
     var location_long: String?
     
     // MARK: - Initialization
-    func transferManagerPeripheral(manger: CBCentralManager, peripheral: CBPeripheral){
+    func transferManagerPeripheral(manger: CBCentralManager, peripheral: CBPeripheral, peripheralName: String){
         self.manager = manger
         self.peripheral = peripheral
+        self.peripheralName = peripheralName
         
     }
     
@@ -52,6 +57,10 @@ class bleDeviceControl: NSObject {
     func connectDevice(){
         manager!.delegate = self
         manager!.connect(peripheral!, options: nil)
+        
+        if(!((peripheralName?.contains("Sensation"))!)){
+            delegate?.warnIncompatibleDevice()
+        }
     }
     
     func disconnectDevice(){
@@ -110,7 +119,8 @@ class bleDeviceControl: NSObject {
                 print("Registered: \(characteristic)")
                 
             }else if(characteristic.uuid == CBUUID.init(string: "FFF6")){
-                peripheral?.readValue(for: characteristic)           //read content inside footstep
+                stepCountChar = characteristic          //remember the characteristic
+                peripheral?.readValue(for: characteristic)     //read content inside footstep
                 peripheral?.setNotifyValue(true, for: characteristic) //register footstep noti
                 print("Reading footstep characteristic value");
                 
@@ -130,6 +140,17 @@ class bleDeviceControl: NSObject {
         
         //notify delegate that this function has run successfully
         delegate?.registeredCharacteristics()
+        
+    }
+    
+    // Read stepcount again
+    func refreshStepCount(){
+        if(stepCountChar != nil){
+            peripheral?.readValue(for: stepCountChar!)
+            print("Refreshing footstep characteristic value");
+        }else{
+            print("Cannot read footstep characteristic value");
+        }
         
     }
     
@@ -168,6 +189,16 @@ class bleDeviceControl: NSObject {
         //notify delegate:
         delegate?.fallDetectionProcessed()
         
+    }
+    
+    //calculate calories
+    func caloriesCalculation(weight: Float, stepCount: Int){
+        var temp = 2.20462262 * weight * 0.57
+        temp /= 2200;
+        temp *= Float(stepCount);
+        
+        //calcuation is done, notify delegate:
+        delegate?.updateCalories(value: temp)
     }
     
     
@@ -321,8 +352,11 @@ extension bleDeviceControl: CBPeripheralDelegate{
                 
             case CBUUID.init(string: "FFF6"):
                 let nsdata = characteristic.value!  //step count is uint32
+                let stepCount = Int(convertNSData2UInt32(data: nsdata))
+                //calculate calories:
+                caloriesCalculation(weight: udobj.userweight, stepCount: stepCount)
                 //notify the delegate about new value:
-                delegate?.characteristicUpdated_FootStep(stepcount: Int(convertNSData2UInt32(data: nsdata)))
+                delegate?.characteristicUpdated_FootStep(stepcount: stepCount)
             
             case CBUUID.init(string: "FFF8"):
                 //this is notifying fall:

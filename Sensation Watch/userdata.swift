@@ -43,7 +43,7 @@ class UserData{
         
         set(newWeight){
             let defaults = UserDefaults.standard
-            defaults.set(newWeight, forKey: "name")
+            defaults.set(newWeight, forKey: "weight")
         }
     }
 }

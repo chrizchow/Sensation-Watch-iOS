@@ -361,7 +361,7 @@
         <!--Edit Personal Data-->
         <scene sceneID="SKR-6d-gJ5">
             <objects>
-                <viewController title="Edit Personal Data" id="j8z-YR-v1L" sceneMemberID="viewController">
+                <viewController title="Edit Personal Data" id="j8z-YR-v1L" customClass="PersonalDataViewController" customModule="Sensation_Watch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bjw-17-uA6"/>
                         <viewControllerLayoutGuide type="bottom" id="1An-G1-c1F"/>
@@ -410,6 +410,9 @@
                                 <rect key="frame" x="16" y="310" width="288" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Save Changes"/>
+                                <connections>
+                                    <action selector="onClick_save:" destination="j8z-YR-v1L" eventType="touchUpInside" id="hxN-0v-Kuv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -432,6 +435,10 @@
                             <constraint firstItem="Niq-KC-IAO" firstAttribute="top" secondItem="Bjw-17-uA6" secondAttribute="bottom" constant="8" symbolic="YES" id="yKY-vu-XW6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="usernameField" destination="eRZ-3R-D7n" id="fmk-vj-pqN"/>
+                        <outlet property="weightField" destination="7f7-YC-fQo" id="OnW-hj-G72"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSn-B9-bOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

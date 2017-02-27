@@ -35,6 +35,11 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     let str_CAHRS_FOUND = NSLocalizedString("Characteristics Found", comment: "found bt chars")
     let str_CAHRS_NOT_FOUND = NSLocalizedString("No Characteristics", comment: "not found bt chars")
     let str_NOTI_REGISTERED = NSLocalizedString("Registered", comment: "registered  bt notfication")
+    let str_FALL_TITLE = NSLocalizedString("Fall Triggered", comment: "fall title")
+    let str_FALL_MSG = NSLocalizedString("Notification will be sent to server", comment: "fall msg")
+    let str_WARN_TITLE = NSLocalizedString("Uncertificed Device", comment: "not certified")
+    let str_WARN_MSG = NSLocalizedString("This device is not certified by Sensation, some features may not work as expected.", comment: "not certiified message")
+    
     
     @IBAction func onClick_synctime(_ sender: UIButton) {
         devCtrlObj.syncTime()
@@ -46,6 +51,7 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     }
     
     @IBAction func onClick_refresh(_ sender: UIButton) {
+        devCtrlObj.refreshStepCount()
         devCtrlObj.fallDetected()  //TODO: fall detected testing
     }
     
@@ -156,7 +162,16 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     }
     
     func fallDetectionProcessed(){
-        showAlertDialog(title: "Fall!", message: "Sent a message to server!")
+        showAlertDialog(title: str_FALL_TITLE, message: str_FALL_MSG )
+    }
+    
+    func warnIncompatibleDevice(){
+        showAlertDialog(title: str_WARN_TITLE , message: str_WARN_MSG )
+    }
+    
+    func updateCalories(value: Float){
+        //update text:
+        caloriesBurnt.text = "\(value)"
     }
     
     // MARK: Show Message

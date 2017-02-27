@@ -11,7 +11,7 @@ import Foundation
 
 class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDelegate {
     
-    var bScanObj = bleScanner()
+    lazy var bScanObj = bleScanner()
     @IBOutlet weak var deviceTable: UITableView!
     @IBOutlet weak var statusLabel: UILabel!
     
@@ -79,14 +79,17 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
             if let selectedDeviceCell = sender as? BleDeviceTableViewCell {
                 let indexPath = deviceTable.indexPath(for: selectedDeviceCell)!
                 let selectedDevice = bScanObj.devices[(indexPath as NSIndexPath).row]
+                let selectedName = selectedDevice.advertisementData["kCBAdvDataLocalName"] as? String
                 
                 //transfer the CoreBluetooth manager and peripheral to new class:
                 deviceCtrlVC.devCtrlObj.transferManagerPeripheral(
                     manger: bScanObj.manager!,
-                    peripheral: selectedDevice.peripheral)
+                    peripheral: selectedDevice.peripheral,
+                    peripheralName: selectedName!)
                 
                 //Stop scanning to save power:
                 bScanObj.stopScanning()
+                
                 
             }
         }

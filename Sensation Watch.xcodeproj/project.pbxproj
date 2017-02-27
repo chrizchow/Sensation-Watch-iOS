@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		90368B9C1E64343C00D6EF86 /* userdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90368B9B1E64343C00D6EF86 /* userdata.swift */; };
+		90368BB21E6473AC00D6EF86 /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90368BB11E6473AC00D6EF86 /* PersonalDataViewController.swift */; };
 		903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5901E62DC0B00CEBB1F /* bleStatus.swift */; };
 		903DF5931E62E1A900CEBB1F /* DeviceControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */; };
 		9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB01E6192A300A683AF /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		90368B9B1E64343C00D6EF86 /* userdata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userdata.swift; sourceTree = "<group>"; };
 		90368BB01E643DF000D6EF86 /* Sensation Watch copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sensation Watch copy-Info.plist"; path = "/Users/chrizchow/Developer/Sensation Watch/Sensation Watch copy-Info.plist"; sourceTree = "<absolute>"; };
+		90368BB11E6473AC00D6EF86 /* PersonalDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 		903DF5901E62DC0B00CEBB1F /* bleStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleStatus.swift; sourceTree = "<group>"; };
 		903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceControlViewController.swift; sourceTree = "<group>"; };
 		9069CFAD1E6192A300A683AF /* Sensation Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensation Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				9069CFD51E61B85A00A683AF /* ScanViewController.swift */,
 				9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */,
 				903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */,
+				90368BB11E6473AC00D6EF86 /* PersonalDataViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			files = (
 				9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */,
 				9069CFDC1E61DD2600A683AF /* bleDeviceControl.swift in Sources */,
+				90368BB21E6473AC00D6EF86 /* PersonalDataViewController.swift in Sources */,
 				90368B9C1E64343C00D6EF86 /* userdata.swift in Sources */,
 				9069CFDA1E61CDA800A683AF /* BleDeviceTableViewCell.swift in Sources */,
 				903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */,
