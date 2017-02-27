@@ -1,0 +1,78 @@
+
+/* Class = "UILabel"; text = "Device Name"; ObjectID = "8P4-Za-GV9"; */
+"8P4-Za-GV9.text" = "Nombre del dispositivo";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "8Wj-Dy-aOh"; */
+"8Wj-Dy-aOh.text" = "-";
+
+/* Class = "UILabel"; text = "Connection Status:"; ObjectID = "BSg-t9-S5w"; */
+"BSg-t9-S5w.text" = "Estado de conexión:";
+
+/* Class = "UILabel"; text = "Turn on Bluetooth to scan"; ObjectID = "CGd-Bb-Gbq"; */
+"CGd-Bb-Gbq.text" = "Activar Bluetooth para escanear";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "F9b-pg-4nV"; */
+"F9b-pg-4nV.title" = " ";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Ghr-z1-AFA"; */
+"Ghr-z1-AFA.text" = "-";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "Ic0-Q5-o1D"; */
+"Ic0-Q5-o1D.text" = "Cargando ...";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "KmN-TZ-Lh7"; */
+"KmN-TZ-Lh7.text" = "-";
+
+/* Class = "UILabel"; text = "My Unique Username:"; ObjectID = "Niq-KC-IAO"; */
+"Niq-KC-IAO.text" = "Mi único nombre de usuario:";
+
+/* Class = "UIButton"; normalTitle = "Synchronize Time"; ObjectID = "ONt-EL-ZEe"; */
+"ONt-EL-ZEe.normalTitle" = "Sincronizar la hora";
+
+/* Class = "UILabel"; text = "Heart Rate (bpm):"; ObjectID = "XA5-hp-3dM"; */
+"XA5-hp-3dM.text" = "Frecuencia cardiaca(bpm):";
+
+/* Class = "UILabel"; text = "Signal Strength"; ObjectID = "YRf-bC-p3L"; */
+"YRf-bC-p3L.text" = "Fuerza de señal";
+
+/* Class = "UILabel"; text = "My Weight (in kilogram):"; ObjectID = "Yim-8v-TbT"; */
+"Yim-8v-TbT.text" = "Mi peso (en kilogramo):";
+
+/* Class = "UILabel"; text = "RSSI"; ObjectID = "ah7-Jr-Woy"; */
+"ah7-Jr-Woy.text" = "RSSI";
+
+/* Class = "UIViewController"; title = "Scan"; ObjectID = "b7N-GW-9If"; */
+"b7N-GW-9If.title" = "Escanear";
+
+/* Class = "UIViewController"; title = "Device Control"; ObjectID = "bEI-O5-Kp7"; */
+"bEI-O5-Kp7.title" = "Control del dispositivo";
+
+/* Class = "UINavigationItem"; title = "Scan Device"; ObjectID = "dxT-Ly-lNs"; */
+"dxT-Ly-lNs.title" = "Dispositivo de escaneo";
+
+/* Class = "UIButton"; normalTitle = "Edit Personal Data"; ObjectID = "hdX-II-CZK"; */
+"hdX-II-CZK.normalTitle" = "Editar datos personales";
+
+/* Class = "UIViewController"; title = "Edit Personal Data"; ObjectID = "j8z-YR-v1L"; */
+"j8z-YR-v1L.title" = "Editar datos personales";
+
+/* Class = "UIButton"; normalTitle = "Save Changes"; ObjectID = "jxB-x3-Fkg"; */
+"jxB-x3-Fkg.normalTitle" = "Guardar cambios";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "lya-c4-AjU"; */
+"lya-c4-AjU.normalTitle" = "Botón";
+
+/* Class = "UILabel"; text = "Bluetooth Status: Off"; ObjectID = "niQ-Ao-h1X"; */
+"niQ-Ao-h1X.text" = "Estado Bluetooth: Apagado";
+
+/* Class = "UIButton"; disabledTitle = "Disconnected"; ObjectID = "nlf-C7-y11"; */
+"nlf-C7-y11.disabledTitle" = "Desconectado";
+
+/* Class = "UIButton"; normalTitle = "Disconnect Watch"; ObjectID = "nlf-C7-y11"; */
+"nlf-C7-y11.normalTitle" = "Desconectar reloj";
+
+/* Class = "UILabel"; text = "Today Footstep (steps):"; ObjectID = "t1r-9k-DTC"; */
+"t1r-9k-DTC.text" = "Hoy Passo (pasos):";
+
+/* Class = "UILabel"; text = "Calories Burnt (kcal):"; ObjectID = "xsp-Pq-GHY"; */
+"xsp-Pq-GHY.text" = "Calorías quemadas (kcal):";

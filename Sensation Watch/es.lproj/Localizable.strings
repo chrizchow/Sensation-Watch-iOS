@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Sensation Watch
+
+  Created by Chriz Chow on 2/27/17.
+  Copyright © 2017 Sensation. All rights reserved.
+*/
+
+"OK" = "sí";
+
+"Bluetooth Status: On" = "Estado Bluetooth: Encendido";
+"Bluetooth Status: Off" = "Estado de Bluetooth: Off";
+"Bluetooth is NOT supported" = "Bluetooth no es compatible";
+"Bluetooth is Strange" = "Bluetooth es extraño";
+
+"Connected" = "Conectado";
+"Disconnected" = "Desconectado";
+"Fail to Connect" = "No se puede conectar";
+"strange" = "Extraño";
+"Found Services" = "Servicios OK";
+"No Services" = "Sin servicios";
+"Characteristics Found" = "Características OK";
+"Registered" = "Registrado";
+"Fall Triggered" = "Fall Triggered";
+"Notification will be sent to server" = "Se enviará una notificación al servidor";
+"Uncertificed Device" = "Dispositivo no certificado";
+"This device is not certified by Sensation, some features may not work as expected." = "Este dispositivo no está certificado por Sensation, es posible que algunas funciones no funcionen como se esperaba.";
+
+"Saved" = "Guardado";
+"Your data will be used for notification sending and calories calculation" = "Tus datos serán utilizados para el envío de notificaciones y cálculo de calorías";

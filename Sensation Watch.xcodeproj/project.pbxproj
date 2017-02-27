@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		90368B9C1E64343C00D6EF86 /* userdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90368B9B1E64343C00D6EF86 /* userdata.swift */; };
 		90368BB21E6473AC00D6EF86 /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90368BB11E6473AC00D6EF86 /* PersonalDataViewController.swift */; };
+		90368BB61E647C4000D6EF86 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90368BB81E647C4000D6EF86 /* Localizable.strings */; };
 		903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5901E62DC0B00CEBB1F /* bleStatus.swift */; };
 		903DF5931E62E1A900CEBB1F /* DeviceControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */; };
 		9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB01E6192A300A683AF /* AppDelegate.swift */; };
@@ -36,6 +37,9 @@
 		90368B9B1E64343C00D6EF86 /* userdata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userdata.swift; sourceTree = "<group>"; };
 		90368BB01E643DF000D6EF86 /* Sensation Watch copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sensation Watch copy-Info.plist"; path = "/Users/chrizchow/Developer/Sensation Watch/Sensation Watch copy-Info.plist"; sourceTree = "<absolute>"; };
 		90368BB11E6473AC00D6EF86 /* PersonalDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
+		90368BB31E647ACC00D6EF86 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		90368BB71E647C4000D6EF86 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		90368BBA1E647C7700D6EF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		903DF5901E62DC0B00CEBB1F /* bleStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleStatus.swift; sourceTree = "<group>"; };
 		903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceControlViewController.swift; sourceTree = "<group>"; };
 		9069CFAD1E6192A300A683AF /* Sensation Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensation Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,7 @@
 				9069CFB71E6192A300A683AF /* Assets.xcassets */,
 				9069CFB91E6192A300A683AF /* LaunchScreen.storyboard */,
 				9069CFBC1E6192A300A683AF /* Info.plist */,
+				90368BB81E647C4000D6EF86 /* Localizable.strings */,
 			);
 			path = "Sensation Watch";
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9069CFBB1E6192A300A683AF /* LaunchScreen.storyboard in Resources */,
+				90368BB61E647C4000D6EF86 /* Localizable.strings in Resources */,
 				9069CFB81E6192A300A683AF /* Assets.xcassets in Resources */,
 				9069CFB61E6192A300A683AF /* Main.storyboard in Resources */,
 			);
@@ -263,10 +269,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		90368BB81E647C4000D6EF86 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90368BB71E647C4000D6EF86 /* es */,
+				90368BBA1E647C7700D6EF86 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		9069CFB41E6192A300A683AF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9069CFB51E6192A300A683AF /* Base */,
+				90368BB31E647ACC00D6EF86 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -286,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -336,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
