@@ -23,10 +23,6 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
     
     override func viewDidLoad() {
         
-        //start the ble scanner:
-        bScanObj.startScanner()
-        bScanObj.delegate = self
-        
         //link the devicetable:
         //deviceTable.delegate = self
         deviceTable.dataSource = self
@@ -34,6 +30,16 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
         //change color to sky blue:
         navigationController!.navigationBar.barTintColor =
             UIColor.init(red: 0.529, green: 0.807, blue: 0.990, alpha: 0.01) //sky blue
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        //initialize the ble scanner:
+        bScanObj = bleScanner()
+        bScanObj.delegate = self
+        
+        //start the ble scanner:
+        bScanObj.startScanner()
         
     }
     
@@ -86,7 +92,6 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
         }
         
     }
-    
     
     
 }

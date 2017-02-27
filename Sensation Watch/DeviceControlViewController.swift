@@ -19,6 +19,8 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     @IBOutlet weak var timesync: UIButton!
     @IBOutlet weak var editpersonaldata: UIButton!
     @IBOutlet weak var disconnect: UIButton!
+    @IBOutlet weak var refreshbutton: UIButton!
+    
     // Our business logic
     var devCtrlObj = bleDeviceControl()
     
@@ -40,18 +42,32 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     
     @IBAction func onClick_disconnect(_ sender: UIButton) {
         devCtrlObj.disconnectDevice()
+        disconnect.isEnabled = false
     }
+    
+    @IBAction func onClick_refresh(_ sender: UIButton) {
+        devCtrlObj.fallDetected()  //TODO: fall detected testing
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set the delegate
+        devCtrlObj.delegate = self
         
         //disable all buttons until further action:
         timesync.isEnabled = false
         editpersonaldata.isEnabled = false
         disconnect.isEnabled = false
+        //refreshbutton.isEnabled = false
         
         //connect device immediately:
         devCtrlObj.connectDevice();
+        
+        //enable notification service:
+        devCtrlObj.enableLocation()
         
     }
     
@@ -68,7 +84,7 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     //watch BT connection update:
     func deviceConnectionUpdate(state: connectionStatus){
         switch(state){
-        case .connected:
+        case connectionStatus.connected:
             //update text:
             connectionStatusLabel.text = str_CONNECTED
             connectionStatusLabel.textColor = UIColor.blue
@@ -76,12 +92,13 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
             disconnect.isEnabled = true
             editpersonaldata.isEnabled = true
             
-        case .disconnected:
+        case connectionStatus.disconnected:
             connectionStatusLabel.text = str_DISCONNECTED
             connectionStatusLabel.textColor = UIColor.gray
-        case .failToConnect:
+        case connectionStatus.failToConnect:
             connectionStatusLabel.text = str_CONNECT_FAIL
             connectionStatusLabel.textColor = UIColor.red
+            
         }
     }
     
@@ -105,6 +122,8 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
             connectionStatusLabel.textColor = UIColor.orange
             //enable time sync button:
             timesync.isEnabled = true
+            //enable refresh button:
+            refreshbutton.isEnabled = true
             
         }else{
             //update text:
@@ -134,6 +153,19 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         //update text:
         footStep.text = "\(stepcount)"
         
+    }
+    
+    func fallDetectionProcessed(){
+        showAlertDialog(title: "Fall!", message: "Sent a message to server!")
+    }
+    
+    // MARK: Show Message
+    func showAlertDialog(title: String, message: String){
+        let localOK = NSLocalizedString("OK", comment: "okay for alertbox")
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction.init(title: localOK, style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
     }
     
     

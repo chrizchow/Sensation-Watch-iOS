@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90368B9C1E64343C00D6EF86 /* userdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90368B9B1E64343C00D6EF86 /* userdata.swift */; };
 		903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5901E62DC0B00CEBB1F /* bleStatus.swift */; };
 		903DF5931E62E1A900CEBB1F /* DeviceControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */; };
 		9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9069CFB01E6192A300A683AF /* AppDelegate.swift */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90368B9B1E64343C00D6EF86 /* userdata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userdata.swift; sourceTree = "<group>"; };
+		90368BB01E643DF000D6EF86 /* Sensation Watch copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sensation Watch copy-Info.plist"; path = "/Users/chrizchow/Developer/Sensation Watch/Sensation Watch copy-Info.plist"; sourceTree = "<absolute>"; };
 		903DF5901E62DC0B00CEBB1F /* bleStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleStatus.swift; sourceTree = "<group>"; };
 		903DF5921E62E1A900CEBB1F /* DeviceControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceControlViewController.swift; sourceTree = "<group>"; };
 		9069CFAD1E6192A300A683AF /* Sensation Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensation Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +75,7 @@
 				9069CFAF1E6192A300A683AF /* Sensation Watch */,
 				9069CFC41E6192A300A683AF /* Sensation WatchTests */,
 				9069CFAE1E6192A300A683AF /* Products */,
+				90368BB01E643DF000D6EF86 /* Sensation Watch copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +96,7 @@
 				9069CFD71E61B95300A683AF /* bleScanner.swift */,
 				9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */,
 				903DF5901E62DC0B00CEBB1F /* bleStatus.swift */,
+				90368B9B1E64343C00D6EF86 /* userdata.swift */,
 				9069CFB41E6192A300A683AF /* Main.storyboard */,
 				9069CFB71E6192A300A683AF /* Assets.xcassets */,
 				9069CFB91E6192A300A683AF /* LaunchScreen.storyboard */,
@@ -226,6 +231,7 @@
 			files = (
 				9069CFB11E6192A300A683AF /* AppDelegate.swift in Sources */,
 				9069CFDC1E61DD2600A683AF /* bleDeviceControl.swift in Sources */,
+				90368B9C1E64343C00D6EF86 /* userdata.swift in Sources */,
 				9069CFDA1E61CDA800A683AF /* BleDeviceTableViewCell.swift in Sources */,
 				903DF5911E62DC0B00CEBB1F /* bleStatus.swift in Sources */,
 				9069CFD61E61B85A00A683AF /* ScanViewController.swift in Sources */,

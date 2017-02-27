@@ -175,7 +175,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghr-z1-AFA">
-                                        <rect key="frame" x="76" y="173" width="236" height="31"/>
+                                        <rect key="frame" x="76" y="173" width="196" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="dHy-uG-L54"/>
                                         </constraints>
@@ -238,8 +238,11 @@
                                         <state key="normal" title="Disconnect Watch">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="disabled" title="Disconnected">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
-                                            <action selector="onClick_disconnect:" destination="bEI-O5-Kp7" eventType="touchUpInside" id="JQZ-Dv-Mg1"/>
+                                            <action selector="onClick_disconnect:" destination="bEI-O5-Kp7" eventType="touchUpInside" id="dDP-G2-Cdw"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="G2b-pF-Wej">
@@ -257,6 +260,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lya-c4-AjU">
+                                        <rect key="frame" x="280" y="172" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="refresh"/>
+                                        <state key="disabled" image="refresh_disabled"/>
+                                        <connections>
+                                            <action selector="onClick_refresh:" destination="bEI-O5-Kp7" eventType="touchUpInside" id="s3p-Co-5Mv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ONt-EL-ZEe" firstAttribute="top" secondItem="8Wj-Dy-aOh" secondAttribute="bottom" constant="8" symbolic="YES" id="0uL-WE-76n"/>
@@ -281,7 +293,7 @@
                                     <constraint firstItem="GOZ-nv-bid" firstAttribute="top" secondItem="xh4-Ck-nmV" secondAttribute="bottom" constant="8" symbolic="YES" id="M39-fo-VSQ"/>
                                     <constraint firstItem="xh4-Ck-nmV" firstAttribute="leading" secondItem="GOZ-nv-bid" secondAttribute="leading" id="MJp-9c-kaJ"/>
                                     <constraint firstItem="Ghr-z1-AFA" firstAttribute="top" secondItem="t1r-9k-DTC" secondAttribute="bottom" constant="8" symbolic="YES" id="MdK-LA-HOT"/>
-                                    <constraint firstItem="t1r-9k-DTC" firstAttribute="trailing" secondItem="Ghr-z1-AFA" secondAttribute="trailing" id="NHa-jv-Ets"/>
+                                    <constraint firstItem="t1r-9k-DTC" firstAttribute="trailing" secondItem="Ghr-z1-AFA" secondAttribute="trailing" constant="40" id="NHa-jv-Ets"/>
                                     <constraint firstItem="nlf-C7-y11" firstAttribute="top" secondItem="hdX-II-CZK" secondAttribute="bottom" constant="8" symbolic="YES" id="OzX-tj-MJL"/>
                                     <constraint firstItem="f2p-cA-LCC" firstAttribute="top" secondItem="ONt-EL-ZEe" secondAttribute="top" id="Po3-CV-HrG"/>
                                     <constraint firstItem="xsp-Pq-GHY" firstAttribute="trailing" secondItem="8Wj-Dy-aOh" secondAttribute="trailing" id="QEf-4y-jY8"/>
@@ -311,7 +323,7 @@
                                     <constraint firstItem="c6f-5O-I2i" firstAttribute="top" secondItem="BSg-t9-S5w" secondAttribute="top" id="nwd-5B-q1R"/>
                                     <constraint firstItem="Ic0-Q5-o1D" firstAttribute="top" secondItem="BSg-t9-S5w" secondAttribute="bottom" constant="8" symbolic="YES" id="ptT-nE-zsd"/>
                                     <constraint firstItem="c6f-5O-I2i" firstAttribute="leading" secondItem="TdS-h5-Nc6" secondAttribute="leadingMargin" id="qHk-zb-btk"/>
-                                    <constraint firstItem="Ghr-z1-AFA" firstAttribute="trailing" secondItem="xsp-Pq-GHY" secondAttribute="trailing" id="qp8-bF-jfy"/>
+                                    <constraint firstItem="Ghr-z1-AFA" firstAttribute="trailing" secondItem="xsp-Pq-GHY" secondAttribute="trailing" constant="-40" id="qp8-bF-jfy"/>
                                     <constraint firstItem="BSg-t9-S5w" firstAttribute="leading" secondItem="Ic0-Q5-o1D" secondAttribute="leading" id="qzg-BB-vJS"/>
                                     <constraint firstItem="9GS-Jj-DFe" firstAttribute="top" secondItem="xsp-Pq-GHY" secondAttribute="top" id="rmW-e1-JeZ"/>
                                     <constraint firstItem="xsp-Pq-GHY" firstAttribute="leading" secondItem="8Wj-Dy-aOh" secondAttribute="leading" id="tEc-et-98a"/>
@@ -332,11 +344,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button_timeSync" destination="ONt-EL-ZEe" id="H5N-1G-DIb"/>
                         <outlet property="caloriesBurnt" destination="8Wj-Dy-aOh" id="bgA-ae-jvy"/>
                         <outlet property="connectionStatusLabel" destination="Ic0-Q5-o1D" id="UOF-DC-6Oe"/>
+                        <outlet property="disconnect" destination="nlf-C7-y11" id="TRl-OH-f8V"/>
+                        <outlet property="editpersonaldata" destination="hdX-II-CZK" id="SSg-wf-8qH"/>
                         <outlet property="footStep" destination="Ghr-z1-AFA" id="do3-4C-hS8"/>
                         <outlet property="heartRate" destination="KmN-TZ-Lh7" id="SfX-cR-fGR"/>
+                        <outlet property="refreshbutton" destination="lya-c4-AjU" id="lOt-v7-8Mf"/>
                         <outlet property="timesync" destination="ONt-EL-ZEe" id="mKJ-TT-dPq"/>
                     </connections>
                 </viewController>
@@ -447,6 +461,8 @@
         <image name="fire" width="128" height="128"/>
         <image name="heartrate" width="128" height="128"/>
         <image name="personal" width="128" height="128"/>
+        <image name="refresh" width="48" height="48"/>
+        <image name="refresh_disabled" width="48" height="48"/>
         <image name="step" width="128" height="128"/>
     </resources>
 </document>

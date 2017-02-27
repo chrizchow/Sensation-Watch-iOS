@@ -19,6 +19,7 @@ protocol bleDeviceControlDelegate{
     mutating func registeredCharacteristics()
     mutating func characteristicUpdated_HeartRate(beatcount: Int)
     mutating func characteristicUpdated_FootStep(stepcount: Int)
+    mutating func fallDetectionProcessed()
 }
 
 
@@ -36,6 +37,9 @@ class bleDeviceControl: NSObject {
     var status = bleStatus.Bluetooth_STRANGE
     var delegate: bleDeviceControlDelegate?
     var epochTimeChar :CBCharacteristic?        //for sync time
+    var udobj = UserData();
+    var location_lat: String?
+    var location_long: String?
     
     // MARK: - Initialization
     func transferManagerPeripheral(manger: CBCentralManager, peripheral: CBPeripheral){
@@ -115,6 +119,10 @@ class bleDeviceControl: NSObject {
                 epochTimeChar = characteristic
                 //synchronizeButton.isEnabled = true
                 
+            }else if(characteristic.uuid == CBUUID.init(string: "FFF8")){
+                //register notification of the "communication handle" characteristic:
+                peripheral?.setNotifyValue(true, for: characteristic) //register comm noti
+                
             }else{
                 print("Not Registered: \(characteristic)")
             }
@@ -143,6 +151,23 @@ class bleDeviceControl: NSObject {
                                    for: epochTimeChar!,
                                    type: CBCharacteristicWriteType.withResponse)
         }
+    }
+    
+    //call this when fall is triggered:
+    func fallDetected(){
+        //concat string:
+        let link = "http://ihome.ust.hk/~mcchow/cgi-bin/sensation_server.php?username=\(udobj.username)&lat=\(location_lat!)&lng=\(location_long!)"
+        print(link) //debug print
+        
+        //go to URL:
+        let url = URL(string: link)
+    
+        let task = URLSession.shared.dataTask(with: url!)
+        task.resume()
+        
+        //notify delegate:
+        delegate?.fallDetectionProcessed()
+        
     }
     
     
@@ -293,13 +318,15 @@ extension bleDeviceControl: CBPeripheralDelegate{
                 let dataArray = [UInt8](characteristic.value!) //heart rate only got 2 bytes
                 //notify the delegate about new value:
                 delegate?.characteristicUpdated_HeartRate(beatcount: Int(dataArray[0]))
-                break
                 
             case CBUUID.init(string: "FFF6"):
                 let nsdata = characteristic.value!  //step count is uint32
                 //notify the delegate about new value:
                 delegate?.characteristicUpdated_FootStep(stepcount: Int(convertNSData2UInt32(data: nsdata)))
-                break
+            
+            case CBUUID.init(string: "FFF8"):
+                //this is notifying fall:
+                fallDetected()
                 
             default: break
                 
@@ -322,6 +349,29 @@ extension bleDeviceControl: CBPeripheralDelegate{
 
 // MARK: - Implementing CLLocationManagerDelegate Delegates
 extension bleDeviceControl: CLLocationManagerDelegate{
+    
+    //Enable location service:
+    func enableLocation(){
+        
+        //Request Location always:
+        self.locationManager.requestAlwaysAuthorization()
+        //self.locationManager.requestWhenInUseAuthorization()
+        
+        //enable location update after enabled:
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        location_lat = "\(locValue.latitude)"
+        location_long = "\(locValue.longitude)"
+        print("locations = \(location_lat) \(location_long)")
+    }
+    
     
 }
 
