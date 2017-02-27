@@ -62,6 +62,32 @@ class ScanViewController : UIViewController, UITableViewDelegate, bleScannerDele
     }
     
     
+    // MARK: - Navigation
+    
+    // Do preparation before navigation, this will be triggred before going to next screen:
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //Pass the BleDevice Object to the next View Controller:
+        if(segue.identifier == "ConnectDevice"){
+            let deviceCtrlVC = segue.destination as! DeviceControlViewController
+            if let selectedDeviceCell = sender as? BleDeviceTableViewCell {
+                let indexPath = deviceTable.indexPath(for: selectedDeviceCell)!
+                let selectedDevice = bScanObj.devices[(indexPath as NSIndexPath).row]
+                
+                //transfer the CoreBluetooth manager and peripheral to new class:
+                deviceCtrlVC.devCtrlObj.transferManagerPeripheral(
+                    manger: bScanObj.manager!,
+                    peripheral: selectedDevice.peripheral)
+                
+                //Stop scanning to save power:
+                bScanObj.stopScanning()
+                
+            }
+        }
+        
+    }
+    
+    
     
 }
 

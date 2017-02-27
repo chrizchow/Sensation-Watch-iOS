@@ -23,7 +23,7 @@ protocol bleDeviceControlDelegate{
 
 
 // MARK: - Business Logic of controlling our BLE watch
-class bleDeviceControl: NSObject, CLLocationManagerDelegate {
+class bleDeviceControl: NSObject {
     
     // MARK: - Variable Declaration
     //core location things:
@@ -31,6 +31,7 @@ class bleDeviceControl: NSObject, CLLocationManagerDelegate {
     //core bluetooth things:
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
+    var deviceConnectionStatus = connectionStatus.disconnected
     //other local variables:
     var status = bleStatus.Bluetooth_STRANGE
     var delegate: bleDeviceControlDelegate?
@@ -43,10 +44,19 @@ class bleDeviceControl: NSObject, CLLocationManagerDelegate {
         
     }
     
-    // MARK: - Connect the peripheral
+    // MARK: - Connect / Disconnect the peripheral
     func connectDevice(){
         manager!.delegate = self
         manager!.connect(peripheral!, options: nil)
+    }
+    
+    func disconnectDevice(){
+        //disconnect the device:
+        manager!.cancelPeripheralConnection(peripheral!)
+        
+        //notify the delegate:
+        deviceConnectionStatus = connectionStatus.disconnected
+        delegate?.deviceConnectionUpdate(state: connectionStatus.disconnected)
     }
     
     // MARK: - Scanning of services and characteristics
@@ -194,6 +204,7 @@ extension bleDeviceControl: CBCentralManagerDelegate{
         print("☺️☺️☺️ Connection Established...")
         
         //notify delegate:
+        deviceConnectionStatus = connectionStatus.connected
         delegate?.deviceConnectionUpdate(state: connectionStatus.connected)
         
         //save the device and put its delegate to this class:
@@ -213,6 +224,7 @@ extension bleDeviceControl: CBCentralManagerDelegate{
         print(error ?? "NULL Error String")
         
         //notify delegate:
+        deviceConnectionStatus = connectionStatus.failToConnect
         delegate?.deviceConnectionUpdate(state: connectionStatus.failToConnect)
         
     }
@@ -221,6 +233,7 @@ extension bleDeviceControl: CBCentralManagerDelegate{
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral,
                         error: Error?){
         //notify delegate:
+        deviceConnectionStatus = connectionStatus.disconnected
         delegate?.deviceConnectionUpdate(state: connectionStatus.disconnected)
     }
     
@@ -304,6 +317,11 @@ extension bleDeviceControl: CBPeripheralDelegate{
             print("Error Occured: \(error)")
         }
     }
+    
+}
+
+// MARK: - Implementing CLLocationManagerDelegate Delegates
+extension bleDeviceControl: CLLocationManagerDelegate{
     
 }
 
