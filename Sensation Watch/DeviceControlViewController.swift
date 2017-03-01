@@ -55,8 +55,6 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         devCtrlObj.fallDetected()  //TODO: fall detected testing
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +73,16 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         //enable notification service:
         devCtrlObj.enableLocation()
         
+    }
+    
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        //when the user clicks back button without disconnecting the device,
+        //it should disconnect automatically:
+        if (self.isMovingFromParentViewController){
+            devCtrlObj.disconnectDevice()
+        }
     }
     
     //iOS BT state update:
