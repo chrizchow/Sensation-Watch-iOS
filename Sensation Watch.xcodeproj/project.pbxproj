@@ -55,6 +55,8 @@
 		9069CFD71E61B95300A683AF /* bleScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleScanner.swift; sourceTree = "<group>"; };
 		9069CFD91E61CDA800A683AF /* BleDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		9069CFDB1E61DD2600A683AF /* bleDeviceControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bleDeviceControl.swift; sourceTree = "<group>"; };
+		90F5E4DF1E671C5D00BF422A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		90F5E4E01E671C5D00BF422A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 9069CFA41E6192A300A683AF;
 			productRefGroup = 9069CFAE1E6192A300A683AF /* Products */;
@@ -274,6 +277,7 @@
 			children = (
 				90368BB71E647C4000D6EF86 /* es */,
 				90368BBA1E647C7700D6EF86 /* Base */,
+				90F5E4E01E671C5D00BF422A /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -283,6 +287,7 @@
 			children = (
 				9069CFB51E6192A300A683AF /* Base */,
 				90368BB31E647ACC00D6EF86 /* es */,
+				90F5E4DF1E671C5D00BF422A /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

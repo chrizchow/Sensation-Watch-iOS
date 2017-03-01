@@ -1,0 +1,78 @@
+
+/* Class = "UILabel"; text = "Device Name"; ObjectID = "8P4-Za-GV9"; */
+"8P4-Za-GV9.text" = "裝置名稱";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "8Wj-Dy-aOh"; */
+"8Wj-Dy-aOh.text" = "-";
+
+/* Class = "UILabel"; text = "Connection Status:"; ObjectID = "BSg-t9-S5w"; */
+"BSg-t9-S5w.text" = "連接狀態：";
+
+/* Class = "UILabel"; text = "Turn on Bluetooth to scan"; ObjectID = "CGd-Bb-Gbq"; */
+"CGd-Bb-Gbq.text" = "打開藍芽開始掃描";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "F9b-pg-4nV"; */
+"F9b-pg-4nV.title" = " ";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Ghr-z1-AFA"; */
+"Ghr-z1-AFA.text" = "-";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "Ic0-Q5-o1D"; */
+"Ic0-Q5-o1D.text" = "載入中⋯⋯";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "KmN-TZ-Lh7"; */
+"KmN-TZ-Lh7.text" = "-";
+
+/* Class = "UILabel"; text = "My Unique Username:"; ObjectID = "Niq-KC-IAO"; */
+"Niq-KC-IAO.text" = "我的獨特名字：";
+
+/* Class = "UIButton"; normalTitle = "Synchronize Time"; ObjectID = "ONt-EL-ZEe"; */
+"ONt-EL-ZEe.normalTitle" = "同步時間";
+
+/* Class = "UILabel"; text = "Heart Rate (bpm):"; ObjectID = "XA5-hp-3dM"; */
+"XA5-hp-3dM.text" = "心跳率（bpm）：";
+
+/* Class = "UILabel"; text = "Signal Strength"; ObjectID = "YRf-bC-p3L"; */
+"YRf-bC-p3L.text" = "信號強度";
+
+/* Class = "UILabel"; text = "My Weight (in kilogram):"; ObjectID = "Yim-8v-TbT"; */
+"Yim-8v-TbT.text" = "我的體重（公斤）：";
+
+/* Class = "UILabel"; text = "RSSI"; ObjectID = "ah7-Jr-Woy"; */
+"ah7-Jr-Woy.text" = "RSSI";
+
+/* Class = "UIViewController"; title = "Scan"; ObjectID = "b7N-GW-9If"; */
+"b7N-GW-9If.title" = "掃瞄";
+
+/* Class = "UIViewController"; title = "Device Control"; ObjectID = "bEI-O5-Kp7"; */
+"bEI-O5-Kp7.title" = "控制裝置";
+
+/* Class = "UINavigationItem"; title = "Scan Device"; ObjectID = "dxT-Ly-lNs"; */
+"dxT-Ly-lNs.title" = "掃描裝置";
+
+/* Class = "UIButton"; normalTitle = "Edit Personal Data"; ObjectID = "hdX-II-CZK"; */
+"hdX-II-CZK.normalTitle" = "更改個人資料";
+
+/* Class = "UIViewController"; title = "Edit Personal Data"; ObjectID = "j8z-YR-v1L"; */
+"j8z-YR-v1L.title" = "更改個人資料";
+
+/* Class = "UIButton"; normalTitle = "Save Changes"; ObjectID = "jxB-x3-Fkg"; */
+"jxB-x3-Fkg.normalTitle" = "儲存變更";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "lya-c4-AjU"; */
+"lya-c4-AjU.normalTitle" = "按鈕";
+
+/* Class = "UILabel"; text = "Bluetooth Status: Off"; ObjectID = "niQ-Ao-h1X"; */
+"niQ-Ao-h1X.text" = "藍芽狀態：未開";
+
+/* Class = "UIButton"; disabledTitle = "Disconnected"; ObjectID = "nlf-C7-y11"; */
+"nlf-C7-y11.disabledTitle" = "已斷開";
+
+/* Class = "UIButton"; normalTitle = "Disconnect Watch"; ObjectID = "nlf-C7-y11"; */
+"nlf-C7-y11.normalTitle" = "斷開手錶連線";
+
+/* Class = "UILabel"; text = "Today Footstep (steps):"; ObjectID = "t1r-9k-DTC"; */
+"t1r-9k-DTC.text" = "今日步數：";
+
+/* Class = "UILabel"; text = "Calories Burnt (kcal):"; ObjectID = "xsp-Pq-GHY"; */
+"xsp-Pq-GHY.text" = "卡路里消耗（大卡）：";

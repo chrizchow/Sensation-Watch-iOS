@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Sensation Watch
+
+  Created by Chriz Chow on 2/27/17.
+  Copyright © 2017 Sensation. All rights reserved.
+*/
+"OK" = "好";
+
+"Bluetooth Status: On" = "藍芽狀態：開";
+"Bluetooth Status: Off" = "藍芽狀態：未開";
+"Bluetooth is NOT supported" = "此 iOS 裝置不支援藍芽";
+"Bluetooth is Strange" = "藍芽狀態不明";
+
+"Connected" = "已連接";
+"Disconnected" = "已斷開";
+"Fail to Connect" = "連線失敗";
+"strange" = "狀態不明";
+"Found Services" = "服務正常";
+"No Services" = "沒有服務";
+"Characteristics Found" = "特徵值正常";
+"Registered" = "已註冊推送";
+"Fall Triggered" = "跌倒了";
+"Notification will be sent to server" = "程式將會傳送一個通知到雲端伺服器";
+"Uncertificed Device" = "不明裝置";
+"This device is not certified by Sensation, some features may not work as expected." = "這個裝置未經 Sensation 核准，有部分功能可能會不正常";
+
+"Saved" = "已儲存";
+"Your data will be used for notification sending and calories calculation" = "您的資料會用作傳送通知給雲端伺服器，也會用作計算每天的卡路里消耗";
