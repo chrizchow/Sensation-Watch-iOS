@@ -96,7 +96,6 @@ class bleDeviceControl: NSObject {
                 //find utc time char here
                 let uuid_utctime = CBUUID.init(string: "FFF7")
                 desiredChars.append(uuid_utctime)
-                
                 //find communication handle here
                 let uuid_commhand = CBUUID.init(string: "FFF8")
                 desiredChars.append(uuid_commhand)
