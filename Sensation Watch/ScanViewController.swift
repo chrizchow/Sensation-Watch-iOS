@@ -120,13 +120,15 @@ extension ScanViewController: UITableViewDataSource{
         let localName = device.advertisementData["kCBAdvDataLocalName"] as? String
         cell.deviceName.text = localName ?? "Unnamed Device"
         cell.rssi.text = String(describing: device.RSSI)
-        cell.deviceIcon.image = #imageLiteral(resourceName: "device_unknown")
         
         //highlight "Sensation"
         if(cell.deviceName.text!.contains("Sensation")){
             cell.backgroundColor = UIColor.yellow
             cell.deviceIcon.image = #imageLiteral(resourceName: "device_known")
             
+        }else{
+            cell.backgroundColor = UIColor.white
+            cell.deviceIcon.image = #imageLiteral(resourceName: "device_unknown")
         }
         
         return cell
