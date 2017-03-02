@@ -52,7 +52,7 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     
     @IBAction func onClick_refresh(_ sender: UIButton) {
         devCtrlObj.refreshStepCount()
-        devCtrlObj.fallDetected()  //TODO: fall detected testing
+        //devCtrlObj.fallDetected()  //TODO: fall detected testing
     }
     
     override func viewDidLoad() {

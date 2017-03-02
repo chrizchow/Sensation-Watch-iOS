@@ -88,7 +88,7 @@ class bleDeviceControl: NSObject {
             //define a list containing characteristics:
             var desiredChars: [CBUUID] = []
             
-            //If it is FFF0, find footstep and utc time:
+            //If it is FFF0, find footstep, utc time and communication handle:
             if(service.uuid == CBUUID.init(string: "FFF0")){
                 //find footstep char here
                 let uuid_footstep = CBUUID.init(string: "FFF6")
@@ -96,6 +96,10 @@ class bleDeviceControl: NSObject {
                 //find utc time char here
                 let uuid_utctime = CBUUID.init(string: "FFF7")
                 desiredChars.append(uuid_utctime)
+                
+                //find communication handle here
+                let uuid_commhand = CBUUID.init(string: "FFF8")
+                desiredChars.append(uuid_commhand)
                 
             }
             //If it is heart rate, find heart rate measurement:
