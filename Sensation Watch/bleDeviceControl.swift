@@ -396,6 +396,10 @@ extension bleDeviceControl: CLLocationManagerDelegate{
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+        }else{
+            location_lat = "NA"
+            location_long = "NA"
+            print("Location Service is not enabled!")
         }
     }
     
@@ -406,6 +410,10 @@ extension bleDeviceControl: CLLocationManagerDelegate{
         print("locations = \(location_lat) \(location_long)")
     }
     
-    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        location_lat = "NA"
+        location_long = "NA"
+        print("location error: \(error)")
+    }
 }
 
