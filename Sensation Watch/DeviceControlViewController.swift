@@ -70,8 +70,11 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         //connect device immediately:
         devCtrlObj.connectDevice();
         
-        //enable notification service:
+        //enable location service:
         devCtrlObj.enableLocation()
+        
+        //grant user notification:
+        devCtrlObj.grantUserNotifications()
         
     }
     

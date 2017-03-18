@@ -27,3 +27,6 @@
 
 "Saved" = "已儲存";
 "Your data will be used for notification sending and calories calculation" = "您的資料會用作傳送通知給雲端伺服器，也會用作計算每天的卡路里消耗";
+
+"Fall Detected" = "跌倒了";
+"An message is sent to server" = "已傳送一個通知到雲端伺服器";

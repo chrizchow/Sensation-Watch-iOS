@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import CoreBluetooth
+import UserNotifications
 
 // MARK: Protocol for other VC to implement
 protocol bleDeviceControlDelegate{
@@ -31,10 +32,16 @@ class bleDeviceControl: NSObject {
     // MARK: - Variable Declaration
     //core location things:
     let locationManager = CLLocationManager()
+    
     //core bluetooth things:
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
     var deviceConnectionStatus = connectionStatus.disconnected
+    
+    //user notification things:
+    let center = UNUserNotificationCenter.current()
+    var notificationGranted = false
+    
     //other local variables:
     var peripheralName: String?
     var status = bleStatus.Bluetooth_STRANGE
@@ -45,6 +52,10 @@ class bleDeviceControl: NSObject {
     var location_lat: String?
     var location_long: String?
     
+    //i18n Strings for output in notification:
+    let str_FALL_TITLE = NSLocalizedString("Fall Detected", comment: "fall detected notification")
+    let str_FALL_BODY = NSLocalizedString("An message is sent to server", comment: "fall msg sent")
+    
     // MARK: - Initialization
     func transferManagerPeripheral(manger: CBCentralManager, peripheral: CBPeripheral, peripheralName: String){
         self.manager = manger
@@ -52,6 +63,58 @@ class bleDeviceControl: NSObject {
         self.peripheralName = peripheralName
         
     }
+    
+    // MARK: - Enable User Notifications
+    
+    // ask for permission from user, if this run at first time, it will show a prompt
+    // if user clicked deny before, nothing will shown and "granted" will always be false:
+    func grantUserNotifications(){
+        //Request Authorization before continue:
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization:
+            if(granted){
+                //Add a general catergory:
+                let generalCategory = UNNotificationCategory(identifier: "GENERAL",
+                                                             actions: [],
+                                                             intentIdentifiers: [],
+                                                             options: .customDismissAction)
+                self.center.setNotificationCategories([generalCategory])
+                self.notificationGranted = true
+            }else{
+                self.notificationGranted = false
+            }
+        }
+    }
+    
+    // fire a notification :
+    func fireUserNotification(title: String, body: String){
+        if(notificationGranted){
+            // Create a notification content according to input:
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = body
+            
+            // Create a trigger at 6 seconds:
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 6, repeats: false)
+            
+            // Create the request object.
+            let identifier = "SensationNoti: \(getTiEpochTime())"
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            
+            // Schedule the request:
+            center.add(request) { (error : Error?) in
+                if let theError = error {
+                    print(theError.localizedDescription)
+                }else{
+                    print("notification is schedled successfully.")
+                }
+            }
+            
+        }else{
+            print("notification permission is not yet granted")
+        }
+    }
+    
     
     // MARK: - Connect / Disconnect the peripheral
     func connectDevice(){
@@ -188,6 +251,9 @@ class bleDeviceControl: NSObject {
     
         let task = URLSession.shared.dataTask(with: url!)
         task.resume()
+        
+        //show notification:
+        fireUserNotification(title: str_FALL_TITLE, body: str_FALL_BODY)
         
         //notify delegate:
         delegate?.fallDetectionProcessed()

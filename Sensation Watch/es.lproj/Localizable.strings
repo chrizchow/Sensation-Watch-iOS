@@ -28,3 +28,6 @@
 
 "Saved" = "Guardado";
 "Your data will be used for notification sending and calories calculation" = "Tus datos serán utilizados para el envío de notificaciones y cálculo de calorías";
+
+"Fall Detected" = "Fall Triggered";
+"An message is sent to server" = "Se envía un mensaje al servidor";
