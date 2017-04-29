@@ -39,6 +39,8 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     let str_FALL_MSG = NSLocalizedString("Notification will be sent to server", comment: "fall msg")
     let str_WARN_TITLE = NSLocalizedString("Uncertificed Device", comment: "not certified")
     let str_WARN_MSG = NSLocalizedString("This device is not certified by Sensation, some features may not work as expected.", comment: "not certiified message")
+    let str_RESET_TITLE = NSLocalizedString("RESET Watch", comment: "fall title")
+    let str_RESET_MSG = NSLocalizedString("Resetting the watch...", comment: "fall title")
     
     
     @IBAction func onClick_synctime(_ sender: UIButton) {
@@ -50,8 +52,15 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         disconnect.isEnabled = false
     }
     
+    @IBAction func onDragOutside_disconnect(_ sender: UIButton) {
+        showAlertDialog(title: str_RESET_TITLE,
+                        message: str_RESET_MSG,
+                        OKhandler: { (action: UIAlertAction!) in self.devCtrlObj.softwareResetDevice() } )
+    }
+    
     @IBAction func onClick_refresh(_ sender: UIButton) {
         devCtrlObj.refreshStepCount()
+        //devCtrlObj.softwareResetDevice()  //TODO: software reset testing
         //devCtrlObj.fallDetected()  //TODO: fall detected testing
     }
     
@@ -173,11 +182,11 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     }
     
     func fallDetectionProcessed(){
-        showAlertDialog(title: str_FALL_TITLE, message: str_FALL_MSG )
+        showAlertDialog(title: str_FALL_TITLE, message: str_FALL_MSG, OKhandler: nil )
     }
     
     func warnIncompatibleDevice(){
-        showAlertDialog(title: str_WARN_TITLE , message: str_WARN_MSG )
+        showAlertDialog(title: str_WARN_TITLE , message: str_WARN_MSG, OKhandler: nil )
     }
     
     func updateCalories(value: Float){
@@ -186,10 +195,10 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
     }
     
     // MARK: Show Message
-    func showAlertDialog(title: String, message: String){
+    func showAlertDialog(title: String, message: String, OKhandler: ((UIAlertAction) -> Void)?){
         let localOK = NSLocalizedString("OK", comment: "okay for alertbox")
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction.init(title: localOK, style: .default, handler: nil)
+        let alertAction = UIAlertAction.init(title: localOK, style: .default, handler: OKhandler)
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
     }

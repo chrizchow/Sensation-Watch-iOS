@@ -48,6 +48,7 @@ class bleDeviceControl: NSObject {
     var delegate: bleDeviceControlDelegate?
     var epochTimeChar :CBCharacteristic?        //for sync time
     var stepCountChar :CBCharacteristic?        //for step count
+    var communicationChar: CBCharacteristic?    //for communication
     var udobj = UserData();
     var location_lat: String?
     var location_long: String?
@@ -95,7 +96,7 @@ class bleDeviceControl: NSObject {
             content.body = body
             
             // Create a trigger at 6 seconds:
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 6, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             
             // Create the request object.
             let identifier = "SensationNoti: \(getTiEpochTime())"
@@ -191,11 +192,13 @@ class bleDeviceControl: NSObject {
                 print("Reading footstep characteristic value");
                 
             }else if(characteristic.uuid == CBUUID.init(string: "FFF7")){
-                //Remeber the characteristic and enable timesync buttion:
+                //Remeber the characteristic and enable timesync button:
                 epochTimeChar = characteristic
                 //synchronizeButton.isEnabled = true
                 
             }else if(characteristic.uuid == CBUUID.init(string: "FFF8")){
+                //Remeber the characteristic to use it send things later:
+                communicationChar = characteristic
                 //register notification of the "communication handle" characteristic:
                 peripheral?.setNotifyValue(true, for: characteristic) //register comm noti
                 
@@ -258,6 +261,18 @@ class bleDeviceControl: NSObject {
         //notify delegate:
         delegate?.fallDetectionProcessed()
         
+    }
+    
+    //send reset signal to device:
+    func softwareResetDevice(){
+        if(communicationChar != nil){
+            //convert the UTC time to NSData:
+            let communicateData :Data = convertInt2NSData(value: 0x9394)
+            //write value to BLE device:
+            peripheral!.writeValue(communicateData,
+                                   for: communicationChar!,
+                                   type: CBCharacteristicWriteType.withResponse)
+        }
     }
     
     //calculate calories
@@ -444,7 +459,7 @@ extension bleDeviceControl: CBPeripheralDelegate{
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         print("😎 NotificationState Update !")
         if((error) != nil){
-            print("Error Occured: \(error)")
+            print("Error Occured: \(String(describing: error))")
         }
     }
     
@@ -476,7 +491,7 @@ extension bleDeviceControl: CLLocationManagerDelegate{
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         location_lat = "\(locValue.latitude)"
         location_long = "\(locValue.longitude)"
-        print("locations = \(location_lat) \(location_long)")
+        print("locations = \(String(describing: location_lat)) \(String(describing: location_long))")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
