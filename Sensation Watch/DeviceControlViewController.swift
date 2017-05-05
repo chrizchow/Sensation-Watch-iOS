@@ -121,9 +121,14 @@ class DeviceControlViewController: UIViewController, bleDeviceControlDelegate {
         case connectionStatus.disconnected:
             connectionStatusLabel.text = str_DISCONNECTED
             connectionStatusLabel.textColor = UIColor.gray
+            timesync.isEnabled = false
+            disconnect.isEnabled = false
+            
         case connectionStatus.failToConnect:
             connectionStatusLabel.text = str_CONNECT_FAIL
             connectionStatusLabel.textColor = UIColor.red
+            timesync.isEnabled = false
+            disconnect.isEnabled = false
             
         }
     }

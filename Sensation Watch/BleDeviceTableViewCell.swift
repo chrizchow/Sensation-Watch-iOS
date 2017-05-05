@@ -12,7 +12,7 @@ import UIKit
 class BleDeviceTableViewCell: UITableViewCell {
     
     @IBOutlet weak var deviceName: UILabel!
-    @IBOutlet weak var rssi: UILabel!
+    @IBOutlet weak var RSSI: UILabel!
     @IBOutlet weak var deviceIcon: UIImageView!
     
 }

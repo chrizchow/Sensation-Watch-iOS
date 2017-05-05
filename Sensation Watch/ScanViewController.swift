@@ -119,7 +119,7 @@ extension ScanViewController: UITableViewDataSource{
         let device = bScanObj.devices[(indexPath as NSIndexPath).row]
         let localName = device.advertisementData["kCBAdvDataLocalName"] as? String
         cell.deviceName.text = localName ?? "Unnamed Device"
-        cell.rssi.text = String(describing: device.RSSI)
+        cell.RSSI.text = "\(bleScanner.signalPercentage(device: device))%"
         
         //highlight "Sensation"
         if(cell.deviceName.text!.contains("Sensation")){

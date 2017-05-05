@@ -85,7 +85,10 @@ class bleScanner: NSObject, CBCentralManagerDelegate {
         //Checking if there's same device inside:
         for device in devices{
             if device.peripheral.isEqual(peripheral){
+                //update RSSI value:
                 device.RSSI = RSSI
+                //update table:
+                delegate?.updateDeviceTable();
                 return
             }
         }
@@ -126,6 +129,28 @@ class bleScanner: NSObject, CBCentralManagerDelegate {
     func clearDevicesTable(){
         devices.removeAll()
         delegate?.updateDeviceTable()
+    }
+    
+    
+    // Calculate the signal percentage of the device
+    // we use -30dBm as 100%, and -90dBm as 0%
+    static func signalPercentage(device: bleDevice) -> Int{
+        // if larger than -30, returns 100:
+        if(device.RSSI.intValue > -30){
+            return 100
+        }
+        
+        // if smaller than -90, returns 0:
+        if(device.RSSI.intValue < -90){
+            return 0
+        }
+        
+        // otherwise, do calculation:
+        // for example, -30dBm = 100% and -90dBm = 0%
+        // their difference is 90-30 = 60
+        // this 60 steps will be converted to base of 100
+        let baseNumber = -(device.RSSI.intValue + 30)
+        return 100 - Int((Float(baseNumber)/(90-30))*100)
     }
     
     
